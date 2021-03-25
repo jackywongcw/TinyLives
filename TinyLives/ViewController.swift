@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     // Instantiated and used with Storyboards
     @IBOutlet var carousel: ZKCarousel! = ZKCarousel()
     @IBOutlet var communicationCollectionView: UICollectionView!
+    @IBOutlet var tableView: UITableView!
 
     // Collection View property
     private let reuseIdentifier = "commCell"
@@ -25,6 +26,13 @@ class ViewController: UIViewController {
 
     private let itemsPerRow: Int = 10
     
+    // Table View property
+    private let tableContentReusable = "contentCell"
+    private let tableHeaderResuable = "headerCell"
+    
+    private let numberOfRows: Int = 10
+    
+    // VCs
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -103,4 +111,22 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return sectionInsets
     }
     
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numberOfRows
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableContentReusable)
+        cell?.backgroundColor = .blue
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableHeaderResuable)
+        cell?.backgroundColor = .red
+        return cell
+    }
 }
