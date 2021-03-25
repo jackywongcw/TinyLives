@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		4494766E260CDAA900838C7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4494766C260CDAA900838C7C /* LaunchScreen.storyboard */; };
 		44947679260CDAA900838C7C /* TinyLivesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44947678260CDAA900838C7C /* TinyLivesTests.swift */; };
 		44947684260CDAA900838C7C /* TinyLivesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44947683260CDAA900838C7C /* TinyLivesUITests.swift */; };
+		44ED97DC260CE67800F8B589 /* CommunicationCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ED97DB260CE67800F8B589 /* CommunicationCellCollectionViewCell.swift */; };
 		64EA0F01976F9CA044D443CB /* Pods_TinyLives.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D201713CBC1E7A2CE93A4B /* Pods_TinyLives.framework */; };
 		850AFD24B25F335C632B55A8 /* Pods_TinyLivesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0155A3731968E76FAAB6B16F /* Pods_TinyLivesTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		4494767F260CDAA900838C7C /* TinyLivesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyLivesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44947683260CDAA900838C7C /* TinyLivesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyLivesUITests.swift; sourceTree = "<group>"; };
 		44947685260CDAA900838C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44ED97DB260CE67800F8B589 /* CommunicationCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		55D7F67C17AC39711A5EEB8A /* Pods-TinyLivesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLivesTests.release.xcconfig"; path = "Target Support Files/Pods-TinyLivesTests/Pods-TinyLivesTests.release.xcconfig"; sourceTree = "<group>"; };
 		A0E646BEE711008CC543498B /* Pods-TinyLives-TinyLivesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLives-TinyLivesUITests.debug.xcconfig"; path = "Target Support Files/Pods-TinyLives-TinyLivesUITests/Pods-TinyLives-TinyLivesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A74912FCFE76680D61A026E9 /* Pods-TinyLives.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLives.release.xcconfig"; path = "Target Support Files/Pods-TinyLives/Pods-TinyLives.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,7 +113,6 @@
 				F765253AD143B4E0DCCF3B46 /* Pods-TinyLivesTests.debug.xcconfig */,
 				55D7F67C17AC39711A5EEB8A /* Pods-TinyLivesTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -147,6 +148,7 @@
 				4494766A260CDAA900838C7C /* Assets.xcassets */,
 				4494766C260CDAA900838C7C /* LaunchScreen.storyboard */,
 				4494766F260CDAA900838C7C /* Info.plist */,
+				44ED97DB260CE67800F8B589 /* CommunicationCellCollectionViewCell.swift */,
 			);
 			path = TinyLives;
 			sourceTree = "<group>";
@@ -408,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44947666260CDAA800838C7C /* ViewController.swift in Sources */,
+				44ED97DC260CE67800F8B589 /* CommunicationCellCollectionViewCell.swift in Sources */,
 				44947662260CDAA800838C7C /* AppDelegate.swift in Sources */,
 				44947664260CDAA800838C7C /* SceneDelegate.swift in Sources */,
 			);

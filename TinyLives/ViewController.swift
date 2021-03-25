@@ -12,12 +12,32 @@ class ViewController: UIViewController {
 
     // Instantiated and used with Storyboards
     @IBOutlet var carousel: ZKCarousel! = ZKCarousel()
+    @IBOutlet var communicationCollectionView: UICollectionView!
 
+    // Collection View property
+    private let reuseIdentifier = "commCell"
+    
+    private let sectionInsets = UIEdgeInsets(
+        top: 8.0,
+        left: 8.0,
+        bottom: 8.0,
+        right: 8.0)
+
+    private let itemsPerRow: Int = 10
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCarousel()
+        setupUI()
     }
     
+    private func setupUI() {
+        // Carousel view
+        setupCarousel()
+        
+        // Collection view
+        
+    }
+
     private func setupCarousel() {
         
         // Create as many slides as you'd like to show in the carousel
@@ -53,6 +73,34 @@ class ViewController: UIViewController {
         // OPTIONAL - use this function to stop automatically traversing slides.
         // self.carousel.stop()
     }
-
 }
 
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    // Data source and delegate
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return itemsPerRow
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: reuseIdentifier,
+            for: indexPath)
+        cell.backgroundColor = .orange
+        return cell
+    }
+    
+    // Flow layout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let height = collectionView.frame.height - sectionInsets.top - sectionInsets.bottom
+        let width = height * 0.6
+
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+}
