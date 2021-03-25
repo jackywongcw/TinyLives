@@ -7,6 +7,8 @@ target 'TinyLives' do
 
   # Pods for TinyLives
   pod 'ZKCarousel'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
 
   target 'TinyLivesTests' do
     inherit! :search_paths
