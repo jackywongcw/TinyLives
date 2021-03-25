@@ -15,8 +15,22 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52T-UI-lzb" customClass="ZKCarousel" customModule="ZKCarousel">
+                                <rect key="frame" x="0.0" y="88" width="414" height="200"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="yC7-7L-rcm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="52T-UI-lzb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Occ-uJ-jVd"/>
+                            <constraint firstItem="52T-UI-lzb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YwN-nf-dUj"/>
+                            <constraint firstItem="52T-UI-lzb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fOR-ng-3AD"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Isy-wI-gkT">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="fmV-81-VQv"/>
@@ -25,6 +39,9 @@
                             <barButtonItem title="Share Feedback" id="aVW-m2-O2h"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="carousel" destination="52T-UI-lzb" id="7eS-Ou-ibC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,6 +69,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
