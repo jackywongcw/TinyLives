@@ -1,0 +1,6 @@
+framework module Pods_TinyLives_TinyLivesUITests {
+  umbrella header "Pods-TinyLives-TinyLivesUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

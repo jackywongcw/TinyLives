@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BBC0504A67EF2ADD8A36135 /* Pods_TinyLives_TinyLivesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1048B2D978558E0ADDA2DB99 /* Pods_TinyLives_TinyLivesUITests.framework */; };
 		44947662260CDAA800838C7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44947661260CDAA800838C7C /* AppDelegate.swift */; };
 		44947664260CDAA800838C7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44947663260CDAA800838C7C /* SceneDelegate.swift */; };
 		44947666260CDAA800838C7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44947665260CDAA800838C7C /* ViewController.swift */; };
@@ -15,6 +16,8 @@
 		4494766E260CDAA900838C7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4494766C260CDAA900838C7C /* LaunchScreen.storyboard */; };
 		44947679260CDAA900838C7C /* TinyLivesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44947678260CDAA900838C7C /* TinyLivesTests.swift */; };
 		44947684260CDAA900838C7C /* TinyLivesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44947683260CDAA900838C7C /* TinyLivesUITests.swift */; };
+		64EA0F01976F9CA044D443CB /* Pods_TinyLives.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D201713CBC1E7A2CE93A4B /* Pods_TinyLives.framework */; };
+		850AFD24B25F335C632B55A8 /* Pods_TinyLivesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0155A3731968E76FAAB6B16F /* Pods_TinyLivesTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0155A3731968E76FAAB6B16F /* Pods_TinyLivesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinyLivesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1048B2D978558E0ADDA2DB99 /* Pods_TinyLives_TinyLivesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinyLives_TinyLivesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23D201713CBC1E7A2CE93A4B /* Pods_TinyLives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinyLives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4494765E260CDAA800838C7C /* TinyLives.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyLives.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44947661260CDAA800838C7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44947663260CDAA800838C7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		4494767F260CDAA900838C7C /* TinyLivesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyLivesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44947683260CDAA900838C7C /* TinyLivesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyLivesUITests.swift; sourceTree = "<group>"; };
 		44947685260CDAA900838C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55D7F67C17AC39711A5EEB8A /* Pods-TinyLivesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLivesTests.release.xcconfig"; path = "Target Support Files/Pods-TinyLivesTests/Pods-TinyLivesTests.release.xcconfig"; sourceTree = "<group>"; };
+		A0E646BEE711008CC543498B /* Pods-TinyLives-TinyLivesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLives-TinyLivesUITests.debug.xcconfig"; path = "Target Support Files/Pods-TinyLives-TinyLivesUITests/Pods-TinyLives-TinyLivesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A74912FCFE76680D61A026E9 /* Pods-TinyLives.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLives.release.xcconfig"; path = "Target Support Files/Pods-TinyLives/Pods-TinyLives.release.xcconfig"; sourceTree = "<group>"; };
+		A801D5536A6F3F3D11E43234 /* Pods-TinyLives-TinyLivesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLives-TinyLivesUITests.release.xcconfig"; path = "Target Support Files/Pods-TinyLives-TinyLivesUITests/Pods-TinyLives-TinyLivesUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AE152389153CA326D9BD189C /* Pods-TinyLives.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLives.debug.xcconfig"; path = "Target Support Files/Pods-TinyLives/Pods-TinyLives.debug.xcconfig"; sourceTree = "<group>"; };
+		F765253AD143B4E0DCCF3B46 /* Pods-TinyLivesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinyLivesTests.debug.xcconfig"; path = "Target Support Files/Pods-TinyLivesTests/Pods-TinyLivesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64EA0F01976F9CA044D443CB /* Pods_TinyLives.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				850AFD24B25F335C632B55A8 /* Pods_TinyLivesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BBC0504A67EF2ADD8A36135 /* Pods_TinyLives_TinyLivesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C615D9B2849D84405C2413A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				23D201713CBC1E7A2CE93A4B /* Pods_TinyLives.framework */,
+				1048B2D978558E0ADDA2DB99 /* Pods_TinyLives_TinyLivesUITests.framework */,
+				0155A3731968E76FAAB6B16F /* Pods_TinyLivesTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2161199A7B36A878A80E3EBC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE152389153CA326D9BD189C /* Pods-TinyLives.debug.xcconfig */,
+				A74912FCFE76680D61A026E9 /* Pods-TinyLives.release.xcconfig */,
+				A0E646BEE711008CC543498B /* Pods-TinyLives-TinyLivesUITests.debug.xcconfig */,
+				A801D5536A6F3F3D11E43234 /* Pods-TinyLives-TinyLivesUITests.release.xcconfig */,
+				F765253AD143B4E0DCCF3B46 /* Pods-TinyLivesTests.debug.xcconfig */,
+				55D7F67C17AC39711A5EEB8A /* Pods-TinyLivesTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		44947655260CDAA800838C7C = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +122,8 @@
 				44947677260CDAA900838C7C /* TinyLivesTests */,
 				44947682260CDAA900838C7C /* TinyLivesUITests */,
 				4494765F260CDAA800838C7C /* Products */,
+				2161199A7B36A878A80E3EBC /* Pods */,
+				0C615D9B2849D84405C2413A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,9 +176,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44947688260CDAA900838C7C /* Build configuration list for PBXNativeTarget "TinyLives" */;
 			buildPhases = (
+				FDE993D37F5E263B2451A723 /* [CP] Check Pods Manifest.lock */,
 				4494765A260CDAA800838C7C /* Sources */,
 				4494765B260CDAA800838C7C /* Frameworks */,
 				4494765C260CDAA800838C7C /* Resources */,
+				726AB4BB0AAA915A8D7F8F5B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +195,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4494768B260CDAA900838C7C /* Build configuration list for PBXNativeTarget "TinyLivesTests" */;
 			buildPhases = (
+				92D08D35695EF2391719A844 /* [CP] Check Pods Manifest.lock */,
 				44947670260CDAA900838C7C /* Sources */,
 				44947671260CDAA900838C7C /* Frameworks */,
 				44947672260CDAA900838C7C /* Resources */,
@@ -170,9 +214,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4494768E260CDAA900838C7C /* Build configuration list for PBXNativeTarget "TinyLivesUITests" */;
 			buildPhases = (
+				E910089D3677708608A95844 /* [CP] Check Pods Manifest.lock */,
 				4494767B260CDAA900838C7C /* Sources */,
 				4494767C260CDAA900838C7C /* Frameworks */,
 				4494767D260CDAA900838C7C /* Resources */,
+				5A48A17BB0EB42EFB08981FF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,6 +298,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A48A17BB0EB42EFB08981FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinyLives-TinyLivesUITests/Pods-TinyLives-TinyLivesUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinyLives-TinyLivesUITests/Pods-TinyLives-TinyLivesUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TinyLives-TinyLivesUITests/Pods-TinyLives-TinyLivesUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		726AB4BB0AAA915A8D7F8F5B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinyLives/Pods-TinyLives-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinyLives/Pods-TinyLives-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TinyLives/Pods-TinyLives-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92D08D35695EF2391719A844 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TinyLivesTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E910089D3677708608A95844 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TinyLives-TinyLivesUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDE993D37F5E263B2451A723 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TinyLives-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4494765A260CDAA800838C7C /* Sources */ = {
@@ -433,6 +582,7 @@
 		};
 		44947689260CDAA900838C7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE152389153CA326D9BD189C /* Pods-TinyLives.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -452,6 +602,7 @@
 		};
 		4494768A260CDAA900838C7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A74912FCFE76680D61A026E9 /* Pods-TinyLives.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -471,6 +622,7 @@
 		};
 		4494768C260CDAA900838C7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F765253AD143B4E0DCCF3B46 /* Pods-TinyLivesTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -493,6 +645,7 @@
 		};
 		4494768D260CDAA900838C7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55D7F67C17AC39711A5EEB8A /* Pods-TinyLivesTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +668,7 @@
 		};
 		4494768F260CDAA900838C7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0E646BEE711008CC543498B /* Pods-TinyLives-TinyLivesUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +689,7 @@
 		};
 		44947690260CDAA900838C7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A801D5536A6F3F3D11E43234 /* Pods-TinyLives-TinyLivesUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
