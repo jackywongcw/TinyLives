@@ -7,6 +7,7 @@
 
 import UIKit
 import ZKCarousel
+import FirebaseDatabase
 
 class ViewController: UIViewController {
 
@@ -32,10 +33,22 @@ class ViewController: UIViewController {
     
     private let numberOfRows: Int = 10
     
+    var fbPosts: [Post] = [Post]() {
+        didSet {
+            print("Jacky the fb posts = \(fbPosts)")
+        }
+    }
+    
+    // Firebase
+    
+    let database: DatabaseReference = Database.database().reference()
+    
     // VCs
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        getPosts()
     }
     
     private func setupUI() {
@@ -128,5 +141,34 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableHeaderResuable)
         cell?.backgroundColor = .red
         return cell
+    }
+}
+
+extension ViewController {
+    func getPosts() {
+        
+        var allPost: [Post] = [Post]()
+        
+        let post = database.child("post")
+        
+        post.observeSingleEvent(of: .value) { (snapshot) in
+            print("jacky the first snap = \(snapshot)")
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let postDict = snap.value as! [String:Any]
+                
+                let newPost = Post()
+                newPost.downloadable = postDict["downloadable"] as? Bool
+                newPost.expiryDate = postDict["expiryDate"] as? String ?? ""
+                newPost.message = postDict["message"] as? String ?? ""
+                newPost.title = postDict["title"] as? String ?? ""
+                newPost.uploadedDate = postDict["uploadedDate"] as? String ?? ""
+                
+                allPost.append(newPost)
+                
+            }
+            
+            self.fbPosts = allPost
+        }
     }
 }
