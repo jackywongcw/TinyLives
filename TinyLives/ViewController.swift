@@ -58,8 +58,7 @@ class ViewController: UIViewController {
         // Carousel view
         setupCarousel()
         
-        // Collection view
-        
+        setupTableView()
     }
     
     private func setupCarousel() {
@@ -98,6 +97,16 @@ class ViewController: UIViewController {
         // self.carousel.stop()
     }
     
+    // TableView
+    func setupTableView() {
+        
+        tableView.estimatedRowHeight = 80
+        tableView.sectionHeaderHeight = 40
+        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    // Data
     func sortData() {
         
         for post in _tempPosts {
@@ -160,13 +169,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableContentReusable) as! PostsTableViewCell
-        cell.backgroundColor = .blue
         
         let date = sortedDateHeader[indexPath.section]
         cell.messageLabel.text = datePostMap[date]?[indexPath.row].message
         
         cell.downloadButton.isHidden = datePostMap[date]?[indexPath.row].downloadable ?? true
         cell.expireDate.isHidden = cell.downloadButton.isHidden
+        cell.imageStackView.isHidden = cell.downloadButton.isHidden
         
         return cell
     }
@@ -193,9 +202,25 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return sortedDateHeader.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 }
 
