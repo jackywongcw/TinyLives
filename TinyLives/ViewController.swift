@@ -12,10 +12,14 @@ import FirebaseDatabase
 class ViewController: UIViewController {
     
     // Instantiated and used with Storyboards
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var indicatorView: UIActivityIndicatorView!
+    
     @IBOutlet var feedbackButton: UIBarButtonItem!
     @IBOutlet var carousel: ZKCarousel! = ZKCarousel()
     @IBOutlet var communicationCollectionView: UICollectionView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var tableViewHeightConstraint: NSLayoutConstraint!
     
     // Collection View property
     private let reuseIdentifier = "commCell"
@@ -35,9 +39,6 @@ class ViewController: UIViewController {
     private let tableContentReusable = "contentCell"
     private let tableHeaderResuable = "headerCell"
     
-    private let numberOfRows: Int = 10
-    
-    private var postHeaders = [Post]()
     
     // For categorising list of posts associating with a date
     var datePostMap: [Date: [Post]] = [:]
@@ -50,12 +51,18 @@ class ViewController: UIViewController {
     
     var _tempPosts: [Post] = [Post]()
     
+    var numberOfPost: Int = 5
+    
     // VCs
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         
         getPosts()
+        
+        // Bugged with pagination
+//        get10PostPerLoad()
+//        tableView.isScrollEnabled = false
     }
     
     private func setupUI() {
@@ -158,14 +165,15 @@ class ViewController: UIViewController {
             } else {
                 self.datePostMap[uploadedDate]?.append(post)
             }
-            
-            
+        
         }
         
         
         self.sortedDateHeader = self.datePostMap.keys.sorted(by: >)
         
         self.tableView.reloadData()
+        self.tableView.layoutIfNeeded()
+        tableViewHeightConstraint.constant = tableView.contentSize.height
     }
     
     @objc func promptFeatureNotAvailable() {
@@ -188,6 +196,33 @@ class ViewController: UIViewController {
             }
         }
     }
+    //  Bugged with pagination
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        print("jacky1 asdf = \(self.scrollView.contentOffset.y)")
+//
+//        if scrollView == self.scrollView {
+//            print("jacky1")
+//             tableView.isScrollEnabled = (self.scrollView.contentOffset.y >= 15)
+//         }
+//
+//         if scrollView == self.tableView {
+//            print("jacky2")
+//             self.tableView.isScrollEnabled = (tableView.contentOffset.y > 0)
+//         }
+//
+//        if scrollView == tableView {
+//            print("jacky3")
+//            if (scrollView.contentOffset.y + 100) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+//                numberOfPost += 5
+//                get10PostPerLoad()
+//                print("jacky the contentoffset y = \(scrollView.contentOffset.y + 100)")
+//                print("jacky the scrollView.contentSize.height = \(scrollView.contentSize.height)")
+//                print("jacky the scrollView.frame.size.height = \(scrollView.frame.size.height)")
+//                print("jacky the minus = \(scrollView.contentSize.height - scrollView.frame.size.height)")
+//            }
+//
+//        }
+//    }
 }
 
 // MARK:- CollectionView funcs
@@ -308,6 +343,8 @@ extension ViewController {
     
     func getPosts() {
         
+        indicatorView.startAnimating()
+        
         let post = database.child("post")
         
         post.observeSingleEvent(of: .value) { (snapshot) in
@@ -328,7 +365,51 @@ extension ViewController {
                 }
                 self._tempPosts.append(newPost)
             }
-            self.sortData()
+            DispatchQueue.main.async {
+                
+                self.indicatorView.stopAnimating()
+                
+                self.sortData()
+            }
+        }
+    }
+    
+    func get10PostPerLoad() {
+        
+        
+        let post = database.child("post")
+        indicatorView.startAnimating()
+        post.queryLimited(toFirst: UInt(numberOfPost)).observe(.value) { (snapshot) in
+            
+            print("jacky the child count = \(snapshot.childrenCount)")
+            var newQueriedPosts = [Post]()
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let postDict = snap.value as! [String:Any]
+                
+                let newPost = Post()
+                newPost.downloadable = postDict["downloadable"] as? Bool
+                newPost.expiryDate = postDict["expiryDate"] as? String ?? ""
+                newPost.message = postDict["message"] as? String ?? ""
+                newPost.title = postDict["title"] as? String ?? ""
+                
+                if let uploadedDate = postDict["uploadedDate"] as? TimeInterval {
+                    let convertedLocalDate = uploadedDate.toLocalDate()
+                    print("The converted local date = \(convertedLocalDate)")
+                    newPost.uploadedDate = convertedLocalDate
+                }
+                newQueriedPosts.append(newPost)
+            }
+            self._tempPosts = newQueriedPosts
+            
+            print("jacky the post = \(self._tempPosts)")
+            
+            DispatchQueue.main.async {
+                
+                self.indicatorView.stopAnimating()
+                
+                self.sortData()
+            }
         }
     }
 }
