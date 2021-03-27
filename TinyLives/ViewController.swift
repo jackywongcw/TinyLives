@@ -10,12 +10,12 @@ import ZKCarousel
 import FirebaseDatabase
 
 class ViewController: UIViewController {
-
+    
     // Instantiated and used with Storyboards
     @IBOutlet var carousel: ZKCarousel! = ZKCarousel()
     @IBOutlet var communicationCollectionView: UICollectionView!
     @IBOutlet var tableView: UITableView!
-
+    
     // Collection View property
     private let reuseIdentifier = "commCell"
     
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         left: 8.0,
         bottom: 8.0,
         right: 8.0)
-
+    
     private let itemsPerRow: Int = 10
     
     // Table View property
@@ -33,15 +33,18 @@ class ViewController: UIViewController {
     
     private let numberOfRows: Int = 10
     
-    var fbPosts: [Post] = [Post]() {
-        didSet {
-            print("Jacky the fb posts = \(fbPosts)")
-        }
-    }
+    private var postHeaders = [Post]()
+    
+    // For categorising list of posts associating with a date
+    var datePostMap: [Date: [Post]] = [:]
+    
+    // To use for cell's header
+    var sortedDateHeader = [Date]()
     
     // Firebase
-    
     let database: DatabaseReference = Database.database().reference()
+    
+    var _tempPosts: [Post] = [Post]()
     
     // VCs
     override func viewDidLoad() {
@@ -58,7 +61,7 @@ class ViewController: UIViewController {
         // Collection view
         
     }
-
+    
     private func setupCarousel() {
         
         // Create as many slides as you'd like to show in the carousel
@@ -94,8 +97,31 @@ class ViewController: UIViewController {
         // OPTIONAL - use this function to stop automatically traversing slides.
         // self.carousel.stop()
     }
+    
+    func sortData() {
+        
+        for post in _tempPosts {
+            
+            let uploadedDate = post.uploadedDate.removeTimeStamp!
+            if self.datePostMap[uploadedDate] == nil {
+                var newPostArray = [Post]()
+                newPostArray.append(post)
+                self.datePostMap[uploadedDate] = newPostArray
+            } else {
+                self.datePostMap[uploadedDate]?.append(post)
+            }
+            
+            
+        }
+        
+        
+        self.sortedDateHeader = self.datePostMap.keys.sorted(by: >)
+        
+        self.tableView.reloadData()
+    }
 }
 
+// MARK:- CollectionView funcs
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // Data source and delegate
@@ -116,7 +142,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         let height = collectionView.frame.height - sectionInsets.top - sectionInsets.bottom
         let width = height * 0.6
-
+        
         return CGSize(width: width, height: height)
     }
     
@@ -126,33 +152,61 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
 }
 
+// MARK:- TableView funcs
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        return datePostMap[sortedDateHeader[section]]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableContentReusable)
-        cell?.backgroundColor = .blue
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableContentReusable) as! PostsTableViewCell
+        cell.backgroundColor = .blue
+        
+        let date = sortedDateHeader[indexPath.section]
+        cell.messageLabel.text = datePostMap[date]?[indexPath.row].message
+        
+        cell.downloadButton.isHidden = datePostMap[date]?[indexPath.row].downloadable ?? true
+        cell.expireDate.isHidden = cell.downloadButton.isHidden
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableHeaderResuable)
-        cell?.backgroundColor = .red
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableHeaderResuable) as! PostHeaderTableViewCell
+        
+        // Only check for 1st and 2nd section
+        // Today and yesterday's
+        switch section  {
+        case 0:
+            if sortedDateHeader[section].removeTimeStamp?.toString() == Date().toString() {
+                cell.titleLabel.text = "TODAY"
+            }
+        case 1:
+            if sortedDateHeader[section].removeTimeStamp?.toString() == Date().yesterday().toString() {
+                cell.titleLabel.text = "YESTERDAY"
+            }
+        default:
+            cell.titleLabel.text = sortedDateHeader[section].toString()
+        }
+        
         return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return sortedDateHeader.count
     }
 }
 
+// Firebase related
 extension ViewController {
+    
     func getPosts() {
-        
-        var allPost: [Post] = [Post]()
         
         let post = database.child("post")
         
         post.observeSingleEvent(of: .value) { (snapshot) in
-            print("jacky the first snap = \(snapshot)")
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let postDict = snap.value as! [String:Any]
@@ -162,13 +216,15 @@ extension ViewController {
                 newPost.expiryDate = postDict["expiryDate"] as? String ?? ""
                 newPost.message = postDict["message"] as? String ?? ""
                 newPost.title = postDict["title"] as? String ?? ""
-                newPost.uploadedDate = postDict["uploadedDate"] as? String ?? ""
                 
-                allPost.append(newPost)
-                
+                if let uploadedDate = postDict["uploadedDate"] as? TimeInterval {
+                    let convertedLocalDate = uploadedDate.toLocalDate()
+                    print("The converted local date = \(convertedLocalDate)")
+                    newPost.uploadedDate = convertedLocalDate
+                }
+                self._tempPosts.append(newPost)
             }
-            
-            self.fbPosts = allPost
+            self.sortData()
         }
     }
 }
