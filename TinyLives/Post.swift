@@ -14,6 +14,6 @@ class Post {
     var expiryDate = ""
     var message = ""
     var title = ""
-    var uploadedDate = ""
+    var uploadedDate: Date = Date()
     
 }
