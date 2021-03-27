@@ -8,8 +8,8 @@ jobs:
       run: sudo xcode-select -s /Applications/Xcode.app
     - name: Install Dependencies
       run: |
-        cd /Users/jackywong/Documents/Projects/MiniLives/TinyLives
-        pod install
+        cd Example
+        pod install --repo-update
       shell: bash
     - uses: ty0x2333/cocoapods-action@master
       with:
