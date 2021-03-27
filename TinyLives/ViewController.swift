@@ -12,6 +12,7 @@ import FirebaseDatabase
 class ViewController: UIViewController {
     
     // Instantiated and used with Storyboards
+    @IBOutlet var feedbackButton: UIBarButtonItem!
     @IBOutlet var carousel: ZKCarousel! = ZKCarousel()
     @IBOutlet var communicationCollectionView: UICollectionView!
     @IBOutlet var tableView: UITableView!
@@ -21,11 +22,14 @@ class ViewController: UIViewController {
     
     private let sectionInsets = UIEdgeInsets(
         top: 8.0,
-        left: 8.0,
+        left: 16.0,
         bottom: 8.0,
-        right: 8.0)
+        right: 16.0)
     
     private let itemsPerRow: Int = 10
+    
+    var commItems = [CommunicationRowData]()
+    
     
     // Table View property
     private let tableContentReusable = "contentCell"
@@ -55,8 +59,11 @@ class ViewController: UIViewController {
     }
     
     private func setupUI() {
+        
         // Carousel view
         setupCarousel()
+        
+        setupCommsData()
         
         setupTableView()
     }
@@ -97,6 +104,38 @@ class ViewController: UIViewController {
         // self.carousel.stop()
     }
     
+    func setupCommsData() {
+        // Comms Row
+        // Create item
+        let TTS = CommunicationRowData.init()
+        TTS.iconImageName = "smartphone"
+        TTS.title = "Talk to School"
+        TTS.backgroundColorName = "SkyBlue"
+        TTS.id = "TTS"
+        commItems.append(TTS)
+        
+        let RFA = CommunicationRowData.init()
+        RFA.iconImageName = "calendar"
+        RFA.title = "Request for Absence"
+        RFA.backgroundColorName = "DeepSkyBlue"
+        RFA.id = "RFA"
+        commItems.append(RFA)
+        
+        let MI = CommunicationRowData.init()
+        MI.iconImageName = "medicalInstruction"
+        MI.title = "Medical Instruction"
+        MI.backgroundColorName = "GrassGreen"
+        MI.id = "MI"
+        commItems.append(MI)
+        
+        // Random guessed name
+        let HU = CommunicationRowData.init()
+        HU.iconImageName = "hearing"
+        HU.title = "Hearing Upcoming"
+        HU.backgroundColorName = "WhineyGreen"
+        HU.id = "HU"
+        commItems.append(HU)
+    }
     // TableView
     func setupTableView() {
         
@@ -128,6 +167,27 @@ class ViewController: UIViewController {
         
         self.tableView.reloadData()
     }
+    
+    @objc func promptFeatureNotAvailable() {
+        let alert = UIAlertController (title: "Oops", message: "Feature not implemented", preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "Okay", style: .cancel)
+        alert.addAction(dismissAction)
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction func prompt(sender: Any) {
+        promptFeatureNotAvailable()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MI" || segue.identifier == "TTS" {
+            if let color = sender as? String {
+                segue.destination.view.backgroundColor = UIColor(named: color)
+            }
+        }
+    }
 }
 
 // MARK:- CollectionView funcs
@@ -135,22 +195,40 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     // Data source and delegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemsPerRow
+        return commItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: reuseIdentifier,
-            for: indexPath)
-        cell.backgroundColor = .orange
+            for: indexPath) as! CommunicationRowCollectionViewCell
+        
+        cell.iconImageView.image = UIImage(named: commItems[indexPath.row].iconImageName)
+        cell.titleLabel.text = commItems[indexPath.row].title
+        cell.backgroundColor = UIColor(named: commItems[indexPath.row].backgroundColorName)
+        
+        cell.layer.cornerRadius = 16
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.clear.cgColor
+        cell.layer.masksToBounds = true
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if commItems[indexPath.row].id == "TTS" || commItems[indexPath.row].id == "MI" {
+            self.performSegue(withIdentifier: commItems[indexPath.row].id, sender: commItems[indexPath.row].backgroundColorName)
+        } else {
+            promptFeatureNotAvailable()
+        }
+        
     }
     
     // Flow layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let height = collectionView.frame.height - sectionInsets.top - sectionInsets.bottom
-        let width = height * 0.6
+        let width = height * 0.7
         
         return CGSize(width: width, height: height)
     }
@@ -176,7 +254,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.downloadButton.isHidden = datePostMap[date]?[indexPath.row].downloadable ?? true
         cell.expireDate.isHidden = cell.downloadButton.isHidden
         cell.imageStackView.isHidden = cell.downloadButton.isHidden
-        
+        cell.downloadButton.addTarget(self, action: #selector(promptFeatureNotAvailable), for: .touchUpInside)
+
         return cell
     }
     
